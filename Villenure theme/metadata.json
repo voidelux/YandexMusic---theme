@@ -3,7 +3,7 @@
     "name": "villenure theme",
     "author": "villenure",
     "description": "A simple theme",
-    "version": "1.2",
+    "version": "1.2.1",
     "css": "style.css",
     "script": "script.js"
 }

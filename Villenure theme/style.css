@@ -10,15 +10,16 @@ div > nav > ol > li:nth-child(3) {
     display: none;
 }
 
-body{user-select:none;}
+body {
+	user-select: none;
+}
+
 .FullscreenPlayerDesktopContent_root__tKNGK,
 .DefaultLayout_root__7J0wo,
 .ym-dark-theme,
 .ym-light-theme {
 	background: 0;
 }
-
-
 
 .NavbarDesktop_root__scYzp {
 	backdrop-filter: blur(70px) brightness(1.5);
@@ -30,9 +31,8 @@ body{user-select:none;}
 	margin-top: 14px;
 	min-width: 78px;
 	margin-left: 10px;
+	height: calc(100vh - 41px);
 }
-
-
 
 .PlayerBar_root__cXUnU {
     grid-template-columns: repeat(1,85%);
@@ -42,7 +42,6 @@ body{user-select:none;}
     margin-block-start: 0px;
     border-radius: 10px;
 }
-
 
 .DefaultLayout_root__7J0wo {
     width: 0%;
@@ -167,7 +166,6 @@ body > div > p:before {
 	visibility: visible;
 }
 
-
 .NavbarDesktop_pinsList___jXIM:before,
 .NavbarDesktop_pinsList___jXIM:after,
 .NavbarDesktop_user__dzbuH,
@@ -224,13 +222,12 @@ body > div > p {
 	visibility: hidden;
 }
 
-
-
 .CompositeHeader_stickyChild_scrolling__wm9_D {
 	background: #272727;
 }
 
 /*Кастом mneLen*/
+/*--------------------------------------------
 .mneLen {
 	position: fixed;
 	color: #fff;
@@ -241,8 +238,9 @@ body > div > p {
 	left: 50%;
 	transform: translate(-50%, -0px);
 }
+/*--------------------------------------------*/
 
-body > div.WithTopBanner_root__P__x3 > div > div > aside > div > div.NavbarDesktop_logoWrapper__89ce6 > a > div > div > div.frsl0v3Y0m7IvVEtEnT8 > svg {
+.NavbarDesktop_logoWrapper__89ce6 * svg {
     background-image: url("http://127.0.0.1:2007/assets/1.gif"); /*Загрузка картинки из localhost PulseSync. Папка
     "assets" в пути, всегда должна быть с маленькой буквы.*/
     background-size: cover; /*Занимает всё пространство иконки не выходя за границы*/
@@ -285,7 +283,13 @@ body > div > p:before {
 .NavbarDesktopUserWidget_userProfileContainer__ha3Tm {
 	position: fixed;
 	left: 0%;
-    bottom: 2px;
+    bottom: 0;
 	pointer-events: none;
-    top: 670px;
 }
+
+/*NAVBAR*/
+/*--------------------------------------------*/
+[data-test-id="PIN_LIST"] {
+	max-height: calc(100vh - 350px);
+	min-height: calc(100vh - 350px);
+/*--------------------------------------------*/

@@ -1,8 +1,8 @@
+// Фоновая картинка
+/*--------------------------------------------*/
 let currentImgBackground = "";
 let isAnimating = false;
 let backgroundLayer = null;
-
-
 
 const initializeBackgroundLayer = () => {
     if (!backgroundLayer) {
@@ -23,36 +23,6 @@ const initializeBackgroundLayer = () => {
         backgroundLayer.style.filter = 'blur(3px) brightness(0.5)';
     }
 };
-
-// Найти элемент на странице
-const timecodeInput = document.querySelector('body > div.WithTopBannerrootPx3 > div > div > section.PlayerBarDesktop_rootd2Hwi.DefaultLayoutplayerBar9IaS.PlayerBar_rootcXUnU > div.PlayerBarDesktop_sonatasJHY > div.ChangeTimecoderoot__QxEw.ChangeTimecode_root_withTimecode__eJhYI > input');
-
-// Начальное значение
-let currentValue = 0;
-
-// Функция для плавного обновления значения
-function smoothChange(targetValue, duration) {
-    const startValue = currentValue;
-    const startTime = performance.now();
-
-    function update(currentTime) {
-        const elapsedTime = currentTime - startTime;
-        const progress = Math.min(elapsedTime / duration, 1);
-
-        currentValue = startValue + (targetValue - startValue) * progress;
-
-        timecodeInput.value = Math.round(currentValue);
-
-        if (progress < 1) {
-            requestAnimationFrame(update);
-        }
-    }
-
-    requestAnimationFrame(update);
-}
-
-
-smoothChange(100, 2000); // Плавное изменение до 100 за 2 секунды
 
 const updateBackgroundImage = (imgBackground) => {
     if (backgroundLayer) {
@@ -101,15 +71,17 @@ setInterval(() => {
     let imgBackground = "";
 
     imgElements.forEach(img => {
-        if (img.src && img.src.includes('/1000x1000')) {
-            imgBackground = img.src.replace('/1000x1000', '/1000x1000');
+        if (img.src && img.src.includes('/100x100')) {
+            imgBackground = img.src.replace('/100x100', '/1000x1000');
         }
+        img.srcset = img.srcset.replace(/\/100x100/g, '/1000x1000'); // Нормальное разрешение картинки плеера
     });
 
     if (imgBackground && imgBackground !== currentImgBackground && !isAnimating) {
         initializeBackgroundLayer();
         updateBackgroundImage(imgBackground);
         currentImgBackground = imgBackground;
+        
     }
 }, 1000);
 /*--------------------------------------------*/
@@ -128,33 +100,6 @@ function disableDoubleClick() {
 }
 
 setInterval(disableDoubleClick, 1000);
-
-function checkHeight() {
-    const contentElement = document.querySelector('.DefaultLayout_content__md70Z');
-    const mneLenElement = document.querySelector('.mneLen');
-
-    if (contentElement && mneLenElement) {
-        const currentHeight = contentElement.clientHeight;
-        const windowHeight = window.innerHeight;
-        const thresholdHeight = windowHeight * 0.8;
-
-        if (currentHeight < thresholdHeight) {
-            mneLenElement.style.display = 'block';
-        } else {
-            mneLenElement.style.display = 'none';
-        }
-    }
-}
-
-setInterval(checkHeight, 100);
-/*--------------------------------------------*/
-
-// Кастом mneLen
-/*--------------------------------------------*/
-var mneLen = document.createElement('div');
-mneLen.className = 'mneLen';
-mneLen.textContent = 'Мне лень оптимизировать';
-document.body.appendChild(mneLen);
 /*--------------------------------------------*/
 
 // Авто смена темы Яндекс Музыки на тёмную
@@ -202,7 +147,8 @@ function applyBackgroundColor() {
 
 applyBackgroundColor();
 
-/*--------------------------------------------*/// Громкость на колесико
+// Громкость на колесико
+/*--------------------------------------------*/
 function changeVolumeOnWheel() {
 	const changeVolumeRoot = document.querySelector('.ChangeVolume_root__HDxtA');
 	const changeVolume = changeVolumeRoot.querySelector('input');
@@ -229,25 +175,32 @@ function changeVolumeOnWheel() {
 }
 
 setInterval(changeVolumeOnWheel, 2000);
-
-/*--------------------------------------------*/
-const themeTitleText = document.createElement('div');
-themeTitleText.className = 'GeniusClientTitle';
-
-themeTitleText.style.position = 'fixed';
-themeTitleText.style.visibility = 'visible';
-themeTitleText.style.fontFamily = '"DL Slifted Display", PostScript Outlines';
-themeTitleText.style.fontSize = '14px';
-themeTitleText.style.fontWeight = '100';
-themeTitleText.style.left = '50%';
-themeTitleText.style.marginLeft = '-66px';
-themeTitleText.style.marginTop = '6px';
-themeTitleText.style.color = '#ff0';
-themeTitleText.style.zIndex = '1';
-
-document.body.appendChild(themeTitleText);
 /*--------------------------------------------*/
 
+//Theme Title Text
+/*--------------------------------------------*
+const isThemeTitleText = document.querySelector('.GeniusClientTitle')
+if (!isThemeTitleText) {
+    const themeTitleText = document.createElement('div');
+    themeTitleText.className = 'GeniusClientTitle'; //¯\_(ツ)_/¯
+    
+    themeTitleText.style.position = 'fixed';
+    themeTitleText.style.visibility = 'visible';
+    themeTitleText.style.fontFamily = '"DL Slifted Display", PostScript Outlines';
+    themeTitleText.style.fontSize = '14px';
+    themeTitleText.style.fontWeight = '100';
+    themeTitleText.style.left = '50%';
+    themeTitleText.style.marginLeft = '-66px';
+    themeTitleText.style.marginTop = '6px';
+    themeTitleText.style.color = '#ff0';
+    themeTitleText.style.zIndex = '1';
+    
+    document.body.appendChild(themeTitleText);
+}
+/*--------------------------------------------*/
+
+// Normal Volume Control
+/*--------------------------------------------*/
 setInterval(() => {
     const element = document.querySelector('[data-test-id="CHANGE_VOLUME_SLIDER"]');
     if (element) {
@@ -257,5 +210,4 @@ setInterval(() => {
         element.style.setProperty('--seek-before-width', `${percentage}%`);
     }
 }, 0);
-
 /*--------------------------------------------*/
