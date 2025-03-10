@@ -1,3 +1,23 @@
+// Main setInterval
+/*--------------------------------------------*/
+setInterval(() => {
+    playerBarBGChange();
+}, 1000);
+/*--------------------------------------------*/
+
+// Normal Volume Control
+/*--------------------------------------------*/
+setInterval(() => {
+    const element = document.querySelector('[data-test-id="CHANGE_VOLUME_SLIDER"]');
+    if (element) {
+        element.setAttribute('max', '0.15');
+        const value = parseFloat(element.getAttribute('value')) || 0;
+        const percentage = (value / 0.15) * 100;
+        element.style.setProperty('--seek-before-width', `${percentage}%`);
+    }
+}, 1);
+/*--------------------------------------------*/
+
 // Фоновая картинка
 /*--------------------------------------------*/
 let currentImgBackground = "";
@@ -66,7 +86,7 @@ const updateBackgroundImage = (imgBackground) => {
     }
 };
 
-setInterval(() => {
+function playerBarBGChange() {
     const imgElements = document.querySelectorAll('[class*="PlayerBarDesktop_cover__IYLwR"]');
     let imgBackground = "";
 
@@ -81,9 +101,19 @@ setInterval(() => {
         initializeBackgroundLayer();
         updateBackgroundImage(imgBackground);
         currentImgBackground = imgBackground;
-        
+
     }
-}, 1000);
+}
+/*--------------------------------------------*/
+
+// Авто смена темы Яндекс Музыки на тёмную
+/*--------------------------------------------*/
+const body = document.body;
+if (!body.classList.contains('ym-dark-theme') && !body.classList.contains('ym-light-theme')) {
+    body.classList.add('ym-dark-theme');
+} else if (body.classList.contains('ym-light-theme')) {
+    body.classList.replace('ym-light-theme', 'ym-dark-theme');
+}
 /*--------------------------------------------*/
 
 // Отключение тупого даблклика
@@ -92,26 +122,13 @@ function disableDoubleClick() {
     const elements = document.querySelectorAll('.PlayerBar_root__cXUnU');
 
     elements.forEach(element => {
-        element.addEventListener('dblclick', function(event) {
+        element.addEventListener('dblclick', function (event) {
             event.preventDefault();
             event.stopPropagation();
         }, true);
     });
 }
-
-setInterval(disableDoubleClick, 1000);
-/*--------------------------------------------*/
-
-// Авто смена темы Яндекс Музыки на тёмную
-/*--------------------------------------------*/
-setInterval(() => {
-  const body = document.body;
-  if (!body.classList.contains('ym-dark-theme') && !body.classList.contains('ym-light-theme')) {
-    body.classList.add('ym-dark-theme');
-  } else if (body.classList.contains('ym-light-theme')) {
-    body.classList.replace('ym-light-theme', 'ym-dark-theme');
-  }
-}, 0);
+disableDoubleClick();
 /*--------------------------------------------*/
 
 // МЕНЯЙТЕ ЦВЕТ!!!
@@ -146,35 +163,14 @@ function applyBackgroundColor() {
 }
 
 applyBackgroundColor();
+/*--------------------------------------------*
 
-// Громкость на колесико
+// Сворачивание сайдбара
 /*--------------------------------------------*/
-function changeVolumeOnWheel() {
-	const changeVolumeRoot = document.querySelector('.ChangeVolume_root__HDxtA');
-	const changeVolume = changeVolumeRoot.querySelector('input');
-
-	changeVolumeRoot.onwheel = (event) => {
-		let value;
-
-		if (event.wheelDelta > 0) value = Number(changeVolume.value) + 0.02;
-		else value = Number(changeVolume.value) - 0.02;
-
-		if (value > 100) value = 100;
-		else if (value < 0) value = 0;
-
-		const lastValue = changeVolume.value;
-		changeVolume.value = value;
-
-		const inputEvent = new Event("input", { bubbles: true });
-		const tracker = changeVolume._valueTracker;
-		if (tracker) {
-			tracker.setValue(lastValue);
-		}
-		changeVolume.dispatchEvent(inputEvent);
-	}
+const button = document.querySelector('[aria-label="Свернуть сайдбар"]');
+if (button) {
+    button.click();
 }
-
-setInterval(changeVolumeOnWheel, 2000);
 /*--------------------------------------------*/
 
 //Theme Title Text
@@ -197,17 +193,4 @@ if (!isThemeTitleText) {
     
     document.body.appendChild(themeTitleText);
 }
-/*--------------------------------------------*/
-
-// Normal Volume Control
-/*--------------------------------------------*/
-setInterval(() => {
-    const element = document.querySelector('[data-test-id="CHANGE_VOLUME_SLIDER"]');
-    if (element) {
-        element.setAttribute('max', '0.15');
-        const value = parseFloat(element.getAttribute('value')) || 0;
-        const percentage = (value / 0.15) * 100;
-        element.style.setProperty('--seek-before-width', `${percentage}%`);
-    }
-}, 0);
 /*--------------------------------------------*/

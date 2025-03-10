@@ -1,9 +1,11 @@
 {
     "image": "image.jpg",
+    "banner": "banner.png",
     "name": "villenure theme",
-    "author": "villenure",
+    "author": ["devillenure"],
     "description": "A simple theme",
-    "version": "1.2.1",
+    "version": "1.2.2",
     "css": "style.css",
-    "script": "script.js"
+    "script": "script.js",
+    "type": "theme"
 }
