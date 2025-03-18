@@ -70,7 +70,7 @@ body {
 .DefaultLayout_content__md70Z {
     grid-area: content;
     position: fixed;
-    left: 452px;
+    left: 447px;
     right: 12px;
     top: 32px;
     bottom: 12px;
@@ -180,7 +180,8 @@ body > div > p:before {
 .FullscreenPlayerDesktopContent_syncLyricsContent__H_enX:before,
 .FullscreenPlayerDesktopContent_syncLyricsContent__H_enX:after,
 .PlayQueue_root__ponhw:before,
-.PlayQueue_root__ponhw:after {
+.PlayQueue_root__ponhw:after,
+div.PlayerBarDesktop_meta__6sm58 > div.cpeagBA1_PblpJn8Xgtv.HbaqudSqu7Q3mv3zMPGr {
 	display: none;
 }
 
@@ -284,7 +285,6 @@ body > div > p:before {
 	position: fixed;
 	left: 0%;
     bottom: 0;
-	pointer-events: none;
 }
 
 /*NAVBAR*/
