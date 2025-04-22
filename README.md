@@ -3,13 +3,13 @@
 
 ![image](https://github.com/wwq69/YandexMusic---theme/blob/screens/3.gif)
 ## 
-![image](https://github.com/villenure/YandexMusic---theme/blob/screens/Annotation%202024-12-02%20195303.png)
+![image](https://github.com/voidelux/YandexMusic---theme/blob/screens/Annotation%202024-12-02%20195303.png)
 ##
 
 ### Powered by
 <a href="https://developer.mozilla.org/en-US/docs/Web/CSS"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original.svg" height="40px" width="40px" /></a> <a href="https://www.javascript.com/"><img src="https://github.com/nielslange/vanilla-js-academy/blob/master/js.ico" height="40px" width="40px" /></a>
     
-# Villenure - Современная, блюреная, быстрая тема для твоей Яндекс музыки!
+# voidelux - Современная, блюреная, быстрая тема для твоей Яндекс музыки!
 
 ## Стол контента
 - [Ссылки](#Ссылки)
